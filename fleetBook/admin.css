@@ -1,0 +1,56 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.sidebar{
+    
+    top: 0;
+    right: -320px;
+    width: 300px;
+    height: 100vh;
+    background-color: bisque;
+    padding: 20px;
+    
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+nav{
+    background-color: rgb(254, 177, 148);
+    padding: 10px;
+    gap: 20px;
+}
+
+button{
+    padding: 10px;
+    border: 1px solid #949494;
+    border-radius: 10px;
+    background-color: rgb(222, 213, 247);
+}
+button:hover{
+    background-color: rgb(174, 101, 230);
+}
+input, select{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #949494;
+}
+#container{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(250, 1fr));
+    gap: 20px;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 300px;
+
+    border-radius: 10px;
+    border: 1px solid #c9c6c6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+}

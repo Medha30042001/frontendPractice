@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin page</title>
+</head>
+<body>
+    <div id="top-buttons">
+        <button id="sort">Sort by Title</button>
+        <button id="filter">Filter By</button>
+
+        <div id="sortMenu" style="display: none;">
+            <button id="atoz">A to Z</button>
+            <button id="ztoa">Z to A</button>
+        </div>
+        <div id="filterMenu" style="display: none;">
+            <button id="all">All</button>
+            <button id="fiction">Fiction</button>
+            <button id="comedy">Comedy</button>
+            <button id="technical">Technical</button>
+        </div>
+    </div>
+    <div id="container">
+
+    </div>
+    <form id="fillForm">
+        <h1>Add a book</h1>
+        <label for="">Title : </label>
+        <input type="text" name="title" id="title">
+        <label for="">Author : </label>
+        <input type="text" name="author" id="author">
+        <label for="">Category : </label>
+        <select name="genre" id="genre">
+            <option value="">Select</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Technical">Technical</option>
+        </select>
+        <button id="addBook">Add Book</button>
+    </form>
+</body>
+
+<script>
+    let books = [];
+    document.getElementById("addBook").onclick = function(event){
+        event.preventDefault();//
+        const form = document.getElementById("fillForm");
+        if(!form.checkValidity()){
+            form.reportValidity();
+            return;
+        }
+        const formData = new FormData(form);
+
+        const data = {};
+        formData.forEach((value, key)=>data[key]=value);
+        data.id = Date.now();
+        books.push(data);
+        renderBooks(books);
+        form.reset();
+    }
+    function renderBooks(list = books){//If nobody sends me a list, then use books by default.
+        const container = document.getElementById("container");
+        container.innerHTML = "";//
+
+        list.forEach((book, index)=>{
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <div class="top-part">
+                    <div class="text">
+                        <h2>Title : ${book.title}</h2>
+                        <p>Author : ${book.author}</p>
+                        <p>Genre : ${book.genre}</p>
+                    </div>
+                    <img src="https://m.media-amazon.com/images/I/71ZB18P3inL._SY522_.jpg
+" alt="book image">
+                </div>
+                <button class="deleteBtn" data-id=${book.id}>Delete</button>
+            `;
+            container.appendChild(card);
+        });
+        attachDeleteEvent(list);
+    }
+    function attachDeleteEvent(){
+        const buttons = document.querySelectorAll(".deleteBtn");
+        buttons.forEach(btn => {
+            btn.onclick = function(){
+                const id = Number(btn.dataset.id);
+                books = books.filter(book => book.id!==id);
+                renderBooks(books);
+            }
+        });
+    }
+
+    document.getElementById("sort").onclick = function(){
+        let sortMenu = document.getElementById("sortMenu");
+        sortMenu.style.display = sortMenu.style.display === 'none'? 'block' : 'none';
+    }
+    document.getElementById("atoz").onclick = function(){
+        books.sort((a, b) => a.title.localeCompare(b.title));
+        renderBooks(books);
+    }
+    document.getElementById("ztoa").onclick = function(){
+        books.sort((a, b) => b.title.localeCompare(a.title));
+        renderBooks(books);
+    }
+    document.getElementById("filter").onclick = function(){
+        let filterMenu = document.getElementById("filterMenu");
+        filterMenu.style.display = filterMenu.style.display === 'none'? 'block' : 'none';
+    }
+    document.getElementById("all").onclick = function(){
+        renderBooks(books);
+    }
+    document.getElementById("fiction").onclick = function(){
+        let filteredBooks = books.filter(n => n.genre==='Fiction');
+        renderBooks(filteredBooks);
+    }
+    document.getElementById("comedy").onclick = function(){
+        let filteredBooks = books.filter(book => book.genre==='Comedy');
+        renderBooks(filteredBooks);
+    }
+    document.getElementById("technical").onclick = function(){
+        let filteredBooks = books.filter(book => book.genre==='Technical');
+        renderBooks(filteredBooks);
+    }
+</script>
+
+</html>

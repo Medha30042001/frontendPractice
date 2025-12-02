@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin page</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <nav>
+        <label for="">Category Filter</label>
+
+        <select name="catMenu" id="category">
+                <option value="">Select</option>
+                <option value="Auto">Auto</option>
+                <option value="Car">Car</option>
+                <option value="Truck">Truck</option>
+                <option value="Bus">Bus</option>
+            </select>
+
+        <label for="">Availability Filter</label>
+        <select name="avail" id="avail">
+                <option value="">Select</option>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+            </select>
+        <button id="clearBtn">Clear Filter</button>
+
+        <div id="availMenu" style="display: none;">
+            <button>All</button>
+            <button>Available</button>
+            <button>Unavailable</button>
+        </div>
+
+    </nav>
+    <div class="sidebar">
+        <form id="fleetForm">
+            <label for="">Vehicle Registration Number</label>
+            <input type="text" name="regno" id>
+            <label for="">Category</label>
+            <select name="category" name="category">
+                <option value="">Select</option>
+                <option value="Auto">Auto</option>
+                <option value="Car">Car</option>
+                <option value="Truck">Truck</option>
+                <option value="Bus">Bus</option>
+            </select>
+            <label for="">Driver Name</label>
+            <input type="text" name="dname">
+            <label for="">Availability</label>
+            <select name="avail" name="avail">
+                <option value="">Select</option>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+            </select>
+            <button id="addFleet">Add Fleet</button>
+        
+        </form>
+    </div>
+    <div id="container">
+
+    </div>
+</body>
+
+<script>
+    let fleet = [];
+
+    document.getElementById("addFleet").onclick = function(event){
+        event.preventDefault();
+
+        const fleetInput = document.getElementById("fleetForm");
+        if(!fleetInput.checkValidity()){
+            fleetInput.reportValidity();
+            return;
+        }
+        const fleetData = new FormData(fleetInput);
+
+        const data = {};
+        fleetData.forEach((value, key) => data[key] = value);
+
+        data.id = Date.now();
+        fleet.push(data);
+        renderFleet(fleet);
+
+        fleetInput.reset();
+    }
+    function renderFleet(list = fleet){
+        const container = document.getElementById("container");
+        container.innerHTML = "";
+
+        list.forEach(fl => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png" alt="fleet image">
+                <p>Reg no. of Vehicle : ${fl.regno}</p>
+                <p>Category : ${fl.category}</p>
+                <p>Driver Name : ${fl.dname}</p>
+                <p>Availability : ${fl.avail}</p>
+                <button class="updateBtn">Update Driver</button>
+                <button class="availBtn">Change Availability</button>
+                <button class="deleteBtn" data-id="${fl.id}">Delete</button>
+            `
+            container.appendChild(card);
+        });
+        attachDeleteEvent();
+    }
+    function attachDeleteEvent(){
+            const buttons = document.querySelectorAll(".deleteBtn");
+            buttons.forEach(btn => {
+                btn.onclick = function(){
+                    const id = Number(btn.dataset.id);
+                    fleet = fleet.filter(f => f.id!==id);
+                    renderFleet(fleet);
+                }
+            });
+        }
+    document.querySelectorAll(".availBtn").addEventListener("click", (btn) =>{
+        fleet.available = !fleet.available;
+        div.querySelector(".status").textContent = fleet.available ? "Available" : "Not Available";
+    })
+
+    document.querySelector(".updateBtn").addEventListener("click", () =>{
+        let newDriver = prompt("Enter new Driver Name");
+
+        if(newDriver!==null && newDriver.trim()!==""){
+            fleet.dname = newDriver;
+        }
+    })
+
+    document.getElementById("clearBtn").onclick = function(){
+        renderFleet(fleet);
+    }
+</script>
+
+</html>

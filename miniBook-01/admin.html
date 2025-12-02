@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="top-buttons">
+        <button id="sort">
+        Sort By Title ▾</button>
+        <button id="filter">
+            Filter By</button>
+    </div>
+    
+    <div id="menu" style="display: none;">
+        <button id="atoz">A to Z</button>
+        <button id="ztoa">Z to A</button>
+    </div>
+
+    <div id="filterMenu" style="display: none;">
+        <button id="all">All</button>
+        <button id="fiction">Fiction</button>
+        <button id="comedy">Comedy</button>
+        <button id="technical">Technical</button>
+    </div>
+    <div id="container">
+        
+    </div>
+
+    <form id="bookForm">
+        <h1>Add a book</h1>
+        <label for="">Title</label>
+        <input type="text" name="title" placeholder="Enter the title" required>
+        <label for="">Author</label>
+        <input type="text" name="author" placeholder="Enter the author" required>
+        <label for="genre">Category</label>
+        <select name="genre" id="genre">
+            <option value="">Select</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Technical">Technical</option>
+        </select>
+
+        <button id="addBook" onclick="addBook()">Add Book</button>
+    </form>    
+</body>
+
+<script>
+    let books = [];
+
+    document.getElementById("addBook").onclick = function addBook(event){
+
+        event.preventDefault();
+
+        const form = document.getElementById("bookForm");
+        if(!form.checkValidity()){
+            form.reportValidity();
+            return;
+        }
+
+        const formData = new FormData(form);
+
+        const data = {};
+        formData.forEach((value, key) =>data[key] = value);
+
+        books.push(data);
+        renderBooks(books);
+        // const card = document.createElement("div");
+        // card.className = 'card';
+        // card.innerHTML = `
+        //     <h3>Title : ${data.title}</h3>
+        //     <p>Author : ${data.author}</p>
+        //     <p>Genre : ${data.genre}</p>
+        // `;
+
+        // document.getElementById("container").appendChild(card);
+
+        form.reset();
+
+    }
+
+    function renderBooks(list = books){
+        const container = document.getElementById("container");
+        container.innerHTML = "";
+
+        books.forEach((book, index) => {
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+            <div class="text">
+                <h3>Title : ${book.title}</h3>
+                <p>Author : ${book.author}</p>
+                <p>Genre : ${book.genre}</p>
+            </div>
+            <div class="image">
+                <img src="https://m.media-amazon.com/images/I/71ZB18P3inL._SY522_.jpg
+" alt="book image">
+            </div>
+            <button class="deleteBtn" data-index="${index}">Delete</button>
+            `;
+            container.appendChild(card);
+        });
+        attachDeleteEvents(list);
+    }
+   function attachDeleteEvents(list){
+    const buttons = document.querySelectorAll(".deleteBtn");
+    buttons.forEach(btn => {
+        btn.onclick = function(){
+            const index = btn.dataset.index;
+            list.splice(index, 1);
+            renderBooks(list);
+        }
+    })
+   }
+    
+    document.getElementById("sort").onclick = function(){
+        const menu = document.getElementById("menu");
+        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    }
+
+    document.getElementById("atoz").onclick = function (){
+        books.sort((a, b) => a.title.localeCompare(b.title));
+        renderBooks(books);
+    }
+    document.getElementById("ztoa").onclick = function (){
+        books.sort((a, b) => b.title.localeCompare(a.title));
+        renderBooks(books);
+    }
+
+    
+    document.getElementById("filter").onclick = function() {
+        let filterMenu = document.getElementById("filterMenu");
+        filterMenu.style.display = filterMenu.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    document.getElementById("all").onclick = function() {
+        renderBooks(books);
+    }
+    document.getElementById("fiction").onclick = function() {
+        let filteredBooks = books.filter(n => n.genre === 'Fiction');
+        renderBooks(filteredBooks);
+    }
+    document.getElementById("comedy").onclick = function() {
+        let filteredBooks = books.filter(n => n.genre === 'Comedy');
+        renderBooks(filteredBooks);
+    }
+    document.getElementById("technical").onclick = function() {
+        let filteredBooks = books.filter(n => n.genre === 'Technical');
+        renderBooks(filteredBooks);
+    }
+</script>
+
+</html>

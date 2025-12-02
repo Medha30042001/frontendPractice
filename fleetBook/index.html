@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+        <form id="loginForm">
+        <label for="">Email : </label>
+            <input type="email" name="mail" id="mail" required>
+            <label for="">Password : </label>
+            <input type="password" name="password" id="password" required>
+            <button id="loginBtn">Login</button>
+        </form>
+
+</body>
+<script>
+    document.getElementById("loginBtn").onclick = function(event){
+        event.preventDefault();
+        
+        let email = document.getElementById("mail").value.trim();
+        let password = document.getElementById("password").value.trim();
+
+        let emailCorrect = 'admin@gmail.com';
+        let pwdCorrect = 'admin1234';
+
+        if(email === emailCorrect && password === pwdCorrect){
+            alert("Login success");
+
+            window.location.href = "admin.html";
+        }else{
+            alert("Wrong email or password");
+        }
+
+        const loginForm = document.getElementById("loginForm");
+        if(!loginForm.checkValidity()){
+            loginForm.reportValidity();
+            return;
+        }
+
+        let loginData = new FormData(form);
+
+        const data = {};
+        loginData.forEach((value, key) => loginData[key] = value);
+
+        
+    }
+</script>
+</html>

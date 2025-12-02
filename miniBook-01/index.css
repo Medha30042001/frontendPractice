@@ -1,0 +1,39 @@
+
+body{
+    background-color: rgb(237, 243, 245);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d5d4d4;
+    border-radius: 10px;
+    background-color: white;
+
+    padding: 50px;
+    max-width: 500px;
+    margin: 50px auto;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+
+}
+
+button{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid lightseagreen;
+    border-radius: 10px;
+    background-color: lightseagreen;
+    color: white;
+}
+button:hover{
+    background-color: rgb(1, 173, 130);
+}
+h1{
+    text-align: center;
+    color: rgb(64, 73, 82);
+}
