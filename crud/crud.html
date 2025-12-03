@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud</title>
+</head>
+<body>
+    <h2>Form</h2>
+    <input type="text" id="name" placeholder="Enter name">
+    <button onclick="saveData()">Save</button>
+    <p id="msg"></p>
+    <h2>List</h2>
+    <table style="border: 2px solid #000000;">
+        <thead>
+            <tr>
+                <td>S.No.</td>
+                <td>Name</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody id="root"></tbody>
+    </table>
+</body>
+<script>
+
+    let index = -1;
+    showData();
+
+    function saveData(){
+        let n = document.getElementById("name").value;
+        if(n === ""){
+            document.getElementById("msg").innerHTML = "Please Enter Name";
+            return;
+        }
+        let d = JSON.parse(localStorage.getItem("list")) || [];
+        //Try to GET the data called list…
+        //…if it doesn’t exist, use an empty array [] instead.
+        if(index === -1){
+            d.push(n);
+            document.getElementById("msg").innerHTML = "Add values";
+        }
+        else{
+            d[index] = n;
+            document.getElementById("msg").innerHTML = "Data updated";
+            index = -1;
+        }
+        localStorage.setItem("list", JSON.stringify(d));
+        document.getElementById("name").value = "";
+        showData();
+    }
+
+    function showData(){
+        let d = JSON.parse(localStorage.getItem("list")) || [];
+        let html = "";
+        for(let i = 0; i<d.length; i++){
+            html += `
+                    <tr>
+                        <td>${i+1}</td>
+                        <td>${d[i]}</td>
+                        <td>
+                            <button onclick = "editData(${i})">Edit</button>
+                            <button onclick = "deleteData(${i})" id="del">Delete</button>
+                        </td>
+                    </tr>
+            `;
+        }
+        document.getElementById("root").innerHTML = html;
+    }
+    function editData(index){
+        let d = JSON.parse(localStorage.getItem("list")) || [];
+        let newName = prompt("Enter new name", d[index]); //prompt(message, defaultValue)
+
+        if(newName === null || newName.trim() === "") return;
+
+        d[index] = newName.trim();
+        localStorage.setItem("list", JSON.stringify(d));
+        showData();
+    }
+    function deleteData(index){
+        let d = JSON.parse(localStorage.getItem("list")) || [];
+        d.splice(index, 1);
+        localStorage.setItem("list", JSON.stringify(d));
+        showData();
+    }
+</script>
+</html>
