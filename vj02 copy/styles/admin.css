@@ -1,0 +1,174 @@
+body{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+
+    padding: 20px;
+    color:  rgb(71, 71, 71);
+}
+h1{
+    margin-top: 40px;
+}
+
+#indexBtn{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    margin: 20px;
+    cursor: pointer;
+}
+
+#indexBtn:hover{
+    background-color: #0e52b8;
+}
+
+#formSubmit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    margin: 20px;
+    padding: 20px 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#formSubmit button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(253, 229, 8);
+    color: rgb(61, 61, 61);
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#formSubmit button:hover{
+    background-color:rgb(197, 218, 7);
+}
+
+input, select{
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid #636363;
+    margin: 5px;
+}
+
+#container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 90%;
+    margin: 20px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card img{
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.deleteBtn{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(236, 131, 61);
+    color: white;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.deleteBtn:hover{
+    background-color: rgb(219, 60, 60);
+}
+
+
+.controls{
+    margin: 20px;
+}
+
+/* custom-dropdown category */
+
+#formSubmit .dropdown-btn{
+    border: 1px solid rgb(149, 150, 151);
+    background-color: white;
+    color: #5e5e5e;
+    font-size: 14px;
+    width: 120px;
+}
+#formSubmit .dropdown-list{
+    background-color: rgba(189, 190, 190, 0.8);
+    min-width: 155px;
+    backdrop-filter: blur(1px);
+}
+#formSubmit .dropdown-list .item:hover{
+    background-color: rgba(149, 150, 151, 0.5);
+}
+
+
+/* custom-dropdown controls*/
+.custom-dropdown{
+    position: relative;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.dropdown-btn{
+    padding: 10px 20px;
+    background-color: rgb(35, 167, 243);
+    border-radius: 6px;
+    color: white;
+    
+}
+.dropdown-list{
+    display: none;
+    position: absolute;
+    background-color: rgba(86, 200, 253, 0.8);
+
+    border-radius: 6px;
+    min-width: 100px;
+    /* margin-top: 5px; */
+    z-index: 2000;
+}
+
+.custom-dropdown:hover .dropdown-list{
+    display:block;
+}
+
+.dropdown-list .item{
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    color: white;
+    
+}
+
+.dropdown-list .item:hover{
+    background-color: rgba(35, 167, 243, 0.8);
+}

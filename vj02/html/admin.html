@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body>
+    <h1>Book Management App</h1>
+
+    <button id="indexBtn">Go to Index Page</button>
+
+    <form id="formSubmit">
+        <h3>Add Book</h3>
+        <input type="text" id="title" placeholder="Enter Title">
+        <input type="text" id="author" placeholder="Enter Author">
+        <select id="category">
+            <option value="">Select category</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Technical">Technical</option>
+        </select>
+        <button id="addBookBtn" type="button">Add Book</button>
+    </form>
+
+    <div class="controls">
+
+        <select id="sortMenu">
+            <option value="">Sort By</option>
+            <option value="A to Z">A to Z</option>
+            <option value="Z to A">Z to A</option>
+        </select>
+
+        <select id="filterMenu">
+            <option value="">Filter By</option>
+            <option value="All">All</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Technical">Technical</option>
+        </select>
+    </div>
+
+    
+    <div id="container"></div>
+</body>
+<script src="../scripts/admin.js"></script>
+</html>

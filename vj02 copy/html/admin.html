@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body>
+    <h1>Book Management App</h1>
+
+    <button id="indexBtn">Go to Index Page</button>
+
+    <form id="formSubmit">
+        <h3>Add Book</h3>
+        <input type="text" id="title" placeholder="Enter Title">
+        <input type="text" id="author" placeholder="Enter Author">
+        
+        <div class="custom-dropdown" id="categoryDropdown">
+            <div class="dropdown-btn" id="categoryBtn">Select Category ▾</div>
+
+            <div class="dropdown-list">
+                <div class="item">Fiction</div>
+                <div class="item">Comedy</div>
+                <div class="item">Technical</div>
+            </div>
+        </div>
+        <button id="addBookBtn" type="button">Add Book</button>
+    </form>
+
+    <div class="controls">
+
+        <div class="custom-dropdown">
+            <div class="dropdown-btn">Sort By</div>
+
+            <div class="dropdown-list" id="sortMenu">
+                <div class="item">A to Z</div>
+                <div class="item">Z to A</div>
+            </div>
+        </div>
+
+        <div class="custom-dropdown">
+            <div class="dropdown-btn">Filter By</div>
+
+            <div class="dropdown-list" id="filterMenu">
+                <div class="item">All</div>
+                <div class="item">Fiction</div>
+                <div class="item">Comedy</div>
+                <div class="item">Technical</div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="container"></div>
+</body>
+<script src="../scripts/admin.js"></script>
+</html>
