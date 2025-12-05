@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+</head>
+<body>
+
+    <div id="sidebar">
+        <!-- <button id="toggleSidebar">☰</button> -->
+
+        <img src="https://cdn-icons-png.flaticon.com/512/56/56763.png" 
+            alt="toggle button" id="toggleSidebar">
+        <form action="" id="fleetForm">
+            <h1>Fill Details</h1>
+            <input type="text" name="" id="regno" placeholder="Enter Reg. No.">
+
+            <div class="custom-dropdown">
+                <div class="dropdown-btn" id="category-btn">Category ▾</div>
+                <div class="dropdown-list" id="categoryMenu">
+                    <div class="item">Auto</div>
+                    <div class="item">Car</div>
+                    <div class="item">Truck</div>
+                    <div class="item">Bus</div>
+                </div>
+            </div>
+
+            <input type="text" name="" id="dname" placeholder="Enter driver name">
+
+            <div class="custom-dropdown">
+                <div class="dropdown-btn" id="avail-btn">Availability ▾</div>
+                <div class="dropdown-list" id="availMenu">
+                    <div class="item">Available</div>
+                    <div class="item">Unavailable</div>
+                </div>
+            </div>
+
+            <button type="button" id="addBtn">Add Fleet</button>
+        </form>
+    </div>
+
+    <nav>
+        <div id="controls">
+            <p>Filter By</p>
+            <div class="custom-dropdown">
+                <div class="dropdown-btn">Category ▾</div>
+                <div class="dropdown-list" id="filterCategory">
+                    <div class="item">All</div>
+                    <div class="item">Auto</div>
+                    <div class="item">Car</div>
+                    <div class="item">Truck</div>
+                    <div class="item">Bus</div>
+                </div>
+            </div>
+
+            <div class="custom-dropdown">
+                <div class="dropdown-btn">Availability ▾</div>
+                <div class="dropdown-list" id="filterAvail">
+                    <div class="item">All</div>
+                    <div class="item">Available</div>
+                    <div class="item">Unavailable</div>
+                </div>
+            </div>
+
+            <button id="clearBtn">Clear Filters</button>
+        </div>
+        <button id="logoutBtn">Log Out</button>
+    </nav>
+
+    <h1 class="appName">Vehicle Registration App</h1>
+    <div id="container">
+        
+    </div>
+</body>
+<script src="../scripts/admin.js"></script>
+</html>
