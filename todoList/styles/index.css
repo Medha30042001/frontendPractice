@@ -1,0 +1,129 @@
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    background-color: #F3F4F6; /* light neutral */
+    color: #1F2937; /* dark neutral text */
+    font-weight: 500;
+}
+
+.completed{
+    text-decoration: line-through;
+    color: #6B7280
+}
+
+.addSearch{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
+
+    background-color: #E5E7EB;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.addTask{
+    display: flex;
+    gap: 10px;
+}
+input{
+    border-radius: 6px;
+    border: none;
+    padding: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+input:focus{
+    outline: none;
+}
+
+#addBtn{
+    background-color: #3B82F6;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#addBtn:hover{
+    background-color: #2563EB;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#tasks{
+    background-color: #e3e6e7;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.taskDiv{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: white;
+    border-radius: 6px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.btnDiv{
+    display: flex;
+    gap: 7px;
+}
+
+.completedBtn, .deleteBtn, .finishBtn{
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.completedBtn{
+    background-color: #10B981;
+}
+.completedBtn:hover{
+    background-color: #059669;
+    transform: translateY(-0.5px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.finishBtn{
+    background-color: #3B82F6;
+}
+.finishBtn:hover{
+    background-color: #2563EB;
+    transform: translateY(-0.5px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+.deleteBtn{
+    background-color: #df5d5d;
+}
+.deleteBtn:hover{
+    background-color: #c74141;
+    transform: translateY(-0.5px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
