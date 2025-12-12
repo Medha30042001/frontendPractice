@@ -48,7 +48,6 @@ function renderTask(){
 
         let taskPoint = document.createElement("span");
         taskPoint.textContent = item.text;
-        taskPoint.className = "taskPoint";
 
         let btnDiv = document.createElement("div");
         btnDiv.className = "btnDiv";
